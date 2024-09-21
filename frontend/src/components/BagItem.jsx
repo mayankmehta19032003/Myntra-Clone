@@ -1,4 +1,15 @@
+import { useDispatch } from "react-redux";
+import { bagAction } from "../store/bagSlice";
+
 function BagItem({item}){
+
+  const dispatch =useDispatch();
+
+  function handleRemoveItem(){
+    dispatch(bagAction.removeFromBag(item.id));
+  }
+
+
     return (<div className="bag-item-container">
         <div className="item-left-part">
           <img className="bag-item-img" src={item.image}/>
@@ -20,7 +31,7 @@ function BagItem({item}){
           </div>
         </div>
     
-        <div className="remove-from-cart" >X</div>
+        <div className="remove-from-cart" onClick={handleRemoveItem} >X</div>
       </div>)
 }
 export default BagItem;
